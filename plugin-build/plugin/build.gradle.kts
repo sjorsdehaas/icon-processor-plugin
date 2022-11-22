@@ -32,7 +32,7 @@ pluginBundle {
     website = property("WEBSITE").toString()
     vcsUrl = property("VCS_URL").toString()
     description = property("DESCRIPTION").toString()
-    tags = listOf("plugin", "gradle", "sample", "template")
+    tags = listOf("plugin", "gradle", "icon", "android")
 }
 
 tasks.create("setupPluginUploadFromEnvironment") {

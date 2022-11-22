@@ -1,4 +1,4 @@
-package com.ncorti.kotlin.gradle.template.plugin
+package com.iodigital.kotlin.gradle.template.plugin
 
 import org.gradle.api.DefaultTask
 import org.gradle.api.file.RegularFileProperty
@@ -9,7 +9,7 @@ import org.gradle.api.tasks.OutputFile
 import org.gradle.api.tasks.TaskAction
 import org.gradle.api.tasks.options.Option
 
-abstract class TemplateExampleTask : DefaultTask() {
+abstract class ConvertIconTask : DefaultTask() {
 
     init {
         description = "Just a sample template task"
