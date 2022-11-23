@@ -1,40 +1,48 @@
 
 # Android Icon Processor Gradle Plugin 🐘
 
-[![Gradle Plugin Repository:](https://plugins.gradle.org/plugin/com.iodigital.plugin.iconpressor)](https://github.com/cortinico/kotlin-gradle-plugin-template/generate) [![Pre Merge Checks](https://github.com/cortinico/kotlin-gradle-plugin-template/workflows/Pre%20Merge%20Checks/badge.svg)](https://github.com/cortinico/kotlin-gradle-plugin-template/actions?query=workflow%3A%22Pre+Merge+Checks%22)  [![License](https://img.shields.io/github/license/cortinico/kotlin-android-template.svg)](LICENSE) ![Language](https://img.shields.io/github/languages/top/cortinico/kotlin-android-template?color=blue&logo=kotlin)
+[![Gradle Plugin Repository:](https://plugins.gradle.org/plugin/com.iodigital.iconprocessor)](https://github.com/cortinico/kotlin-gradle-plugin-template/generate) [![Pre Merge Checks](https://github.com/cortinico/kotlin-gradle-plugin-template/workflows/Pre%20Merge%20Checks/badge.svg)](https://github.com/cortinico/kotlin-gradle-plugin-template/actions?query=workflow%3A%22Pre+Merge+Checks%22)  [![License](https://img.shields.io/github/license/cortinico/kotlin-android-template.svg)](LICENSE) ![Language](https://img.shields.io/github/languages/top/cortinico/kotlin-android-template?color=blue&logo=kotlin)
 
 A Gradle plugin that adds a task for converting your icon launcher to the correct resolutions.
 Can be ran as a standalone task or included as a build step.
 
 ## How to use 👣
 
+### Requirements
+
+This plugin uses `imagemagick` from a bash script.
+
+This executable needs to be installed in order to use this plugin.
+
 ### Add the plugin to your project
-Apply the plugin to your build.gradle:
+Apply the plugin:
+
+build.gradle
 
 ```
 plugins {
     id "com.iodigital.iconprocessor"
 }
 ```
-or build.gradle.kts
+build.gradle.kts
 ```
 plugins {
     id ("com.iodigital.iconprocessor")
 }
 ```
-Add them as a task to your build script:
+Add them as a task to your build script at a suitable stage:
 
 build.gradle:
 
 ```
-task("convertIcon").dependsOn("check")
-task("convertIcon").finalizedBy("check")
+task("convertIcon").finalizedBy("check") // Run before a named task
+task("convertIcon").dependsOn("check") // Run after a named task
 ```
 
 build.gradle.kts:
 ```
-tasks.findByName("convertIcon")?.finalizedBy("check")
-tasks.findByName("convertIcon")?.dependsOn("check")
+tasks.findByName("convertIcon")?.finalizedBy("check") // Run before a named task
+tasks.findByName("convertIcon")?.dependsOn("check") // Run after a named task
 ```
 
 ###Configuration:
@@ -60,7 +68,8 @@ icon {
 }
 ```
 All these properties are optional.
-Defaults:
+
+The defaults are:
 ```
 icon {
     color "red"
@@ -71,12 +80,14 @@ icon {
 }
 ```
 You can also invoke the plugin task from CLI or wrap it in your own task.
-Available task is ```convertIcon```
+
+Use the available task ```convertIcon```
 ```
 gradlew convertIcon --text="UAT" --color="green"
 ```
 
-Wrapper task:
+Wrapper task example:
+
 build.gradle
 ```
 tasks {
@@ -191,5 +202,5 @@ Feel free to have a go at it.
 
 ## License 📄
 
-This template is licensed under the MIT License - see the [License](License) file for details.
+This template is licensed under the MIT License - see the [License](LICENSE) file for details.
 Please note that the generated template is offering to start with a MIT license but you can change it to whatever you wish, as long as you attribute under the MIT terms that you're using the template.
