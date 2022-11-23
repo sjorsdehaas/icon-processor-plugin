@@ -21,9 +21,9 @@ abstract class IconPlugin : Plugin<Project> {
             it.convertIOS.set(extension.convertIOS)
             it.color.set(extension.color)
             it.text.set(extension.text)
-            it.outputFile.set(extension.outputFile)
+            it.outputDir.set(extension.outputDir)
 
-            it.sampleAction()
+            it.action()
         }
     }
 

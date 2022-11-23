@@ -34,7 +34,7 @@ abstract class IconExtension @Inject constructor(private val project: Project) {
 
     @Optional
     @OutputDirectory
-    val outputFile: DirectoryProperty = objects.directoryProperty().convention(
+    val outputDir: DirectoryProperty = objects.directoryProperty().convention(
         project.layout.projectDirectory.dir(DEFAULT_OUTPUT_FILE)
     )
 

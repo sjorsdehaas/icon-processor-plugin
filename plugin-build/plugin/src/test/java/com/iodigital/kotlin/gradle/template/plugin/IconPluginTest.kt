@@ -35,7 +35,7 @@ class IconPluginTest {
             convertIOS.set(true)
             inputFile.set(path)
             text.set("TEST")
-            outputFile.set(dir)
+            outputDir.set(dir)
         }
 
         val task = project.tasks.getByName("convertIcon") as ConvertIconTask
@@ -44,6 +44,6 @@ class IconPluginTest {
         assertEquals("TEST", task.text.get())
         assertEquals(true, task.convertIOS.get())
         assertEquals(path, task.inputFile.get())
-        assertEquals(dir, task.outputFile.get().asFile)
+        assertEquals(dir, task.outputDir.get().asFile)
     }
 }
