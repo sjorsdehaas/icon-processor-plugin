@@ -13,13 +13,13 @@ Apply the plugin to your build.gradle:
 
 ```
 plugins {
-    id "com.iodigital.plugin"
+    id "com.iodigital.iconprocessor"
 }
 ```
 or build.gradle.kts
 ```
 plugins {
-    id ("com.iodigital.plugin")
+    id ("com.iodigital.iconprocessor")
 }
 ```
 Add them as a task to your build script:
@@ -182,6 +182,12 @@ There are currently the following workflows available:
 ## Contributing 🤝
 
 Feel free to open a issue or submit a pull request for any bugs/improvements.
+
+## Known issues
+
+From the preMerge CI actions it seems to be that there is an issue regarding windows OS.
+I have not tested this on a windows device and all attempts to solve it have been futile so far.
+Feel free to have a go at it.
 
 ## License 📄
 

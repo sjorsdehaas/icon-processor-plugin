@@ -1,6 +1,6 @@
 plugins {
     java
-    id("com.iodigital.plugin")
+    id("com.iodigital.iconprocessor")
 }
 
 icon {
