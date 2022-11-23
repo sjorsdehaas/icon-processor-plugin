@@ -24,6 +24,18 @@ gradlePlugin {
             version = property("VERSION").toString()
             displayName = property("DISPLAY_NAME").toString()
         }
+        sourceSets {
+            main {
+                resources {
+                    srcDirs(listOf("/src/main/resources"))
+                }
+            }
+            test {
+                resources {
+                    srcDirs(listOf("/src/main/resources"))
+                }
+            }
+        }
     }
 }
 

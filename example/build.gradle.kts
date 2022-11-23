@@ -4,5 +4,9 @@ plugins {
 }
 
 icon {
-    message.set("Just trying this gradle plugin...")
+    color.set("yellow")
+    text.set("TEST")
+    inputFile.set(projectDir.path + "/app/src/main/res/app-icon.png")
+    outputFile.set(File(projectDir.path + "/app/src/main/res/"))
+    convertIOS.set(false)
 }

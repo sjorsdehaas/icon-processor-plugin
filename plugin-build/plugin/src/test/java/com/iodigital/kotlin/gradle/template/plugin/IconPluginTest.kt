@@ -17,7 +17,7 @@ class IconPluginTest {
     }
 
     @Test
-    fun `extension templateExampleConfig is created correctly`() {
+    fun `extension icon is created correctly`() {
         val project = ProjectBuilder.builder().build()
         project.pluginManager.apply("com.iodigital.kotlin.gradle.template.plugin")
 
@@ -28,17 +28,22 @@ class IconPluginTest {
     fun `parameters are passed correctly from extension to task`() {
         val project = ProjectBuilder.builder().build()
         project.pluginManager.apply("com.iodigital.kotlin.gradle.template.plugin")
-        val aFile = File(project.projectDir, ".tmp")
+        val dir = File(project.projectDir.path)
+        val path = project.projectDir.path + "input.tmp"
         (project.extensions.getByName("icon") as IconExtension).apply {
-            tag.set("a-sample-tag")
-            message.set("just-a-message")
-            outputFile.set(aFile)
+            color.set("yellow")
+            convertIOS.set(true)
+            inputFile.set(path)
+            text.set("TEST")
+            outputFile.set(dir)
         }
 
         val task = project.tasks.getByName("convertIcon") as ConvertIconTask
 
-        assertEquals("a-sample-tag", task.tag.get())
-        assertEquals("just-a-message", task.message.get())
-        assertEquals(aFile, task.outputFile.get().asFile)
+        assertEquals("yellow", task.color.get())
+        assertEquals("TEST", task.text.get())
+        assertEquals(true, task.convertIOS.get())
+        assertEquals(path, task.inputFile.get())
+        assertEquals(dir, task.outputFile.get().asFile)
     }
 }
