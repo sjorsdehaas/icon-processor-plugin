@@ -1,4 +1,4 @@
-package com.iodigital.kotlin.gradle.template.plugin
+package com.iodigital.plugin
 
 import org.gradle.api.Plugin
 import org.gradle.api.Project
@@ -38,14 +38,7 @@ abstract class IconPlugin : Plugin<Project> {
 
         val tmp = File(TMP_PATH)
         val script = watermarkScript.asString()
-        if (tmp.exists()) {
-            if (tmp.readText() != script) {
-                tmp.delete()
-                tmp.writeText(script)
-            }
-        } else {
-            tmp.writeText(script)
-        }
+        tmp.writeText(script)
         tmp.setExecutable(true)
     }
 }

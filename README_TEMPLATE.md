@@ -1,114 +1,19 @@
 
-# Android Icon Processor Gradle Plugin 🐘
+# kotlin-gradle-plugin-template 🐘
 
-[![Gradle Plugin Repository:](https://plugins.gradle.org/plugin/com.iodigital.plugin.iconpressor)](https://github.com/cortinico/kotlin-gradle-plugin-template/generate) [![Pre Merge Checks](https://github.com/cortinico/kotlin-gradle-plugin-template/workflows/Pre%20Merge%20Checks/badge.svg)](https://github.com/cortinico/kotlin-gradle-plugin-template/actions?query=workflow%3A%22Pre+Merge+Checks%22)  [![License](https://img.shields.io/github/license/cortinico/kotlin-android-template.svg)](LICENSE) ![Language](https://img.shields.io/github/languages/top/cortinico/kotlin-android-template?color=blue&logo=kotlin)
+[![Use this template](https://img.shields.io/badge/-Use%20this%20template-brightgreen)](https://github.com/cortinico/kotlin-gradle-plugin-template/generate) [![Pre Merge Checks](https://github.com/cortinico/kotlin-gradle-plugin-template/workflows/Pre%20Merge%20Checks/badge.svg)](https://github.com/cortinico/kotlin-gradle-plugin-template/actions?query=workflow%3A%22Pre+Merge+Checks%22)  [![License](https://img.shields.io/github/license/cortinico/kotlin-android-template.svg)](LICENSE) ![Language](https://img.shields.io/github/languages/top/cortinico/kotlin-android-template?color=blue&logo=kotlin)
 
-A Gradle plugin that adds a task for converting your icon launcher to the correct resolutions.
-Can be ran as a standalone task or included as a build step.
+A simple Github template that lets you create a **Gradle Plugin** 🐘 project using **100% Kotlin** and be up and running in a **few seconds**.
+
+This template is focused on delivering a project with **static analysis** and **continuous integration** already in place.
 
 ## How to use 👣
 
-### Add the plugin to your project
-Apply the plugin to your build.gradle:
+Just click on [![Use this template](https://img.shields.io/badge/-Use%20this%20template-brightgreen)](https://github.com/cortinico/kotlin-gradle-plugin-template/generate) button to create a new repo starting from this template.
 
-```
-plugins {
-    id "com.iodigital.plugin"
-}
-```
-or build.gradle.kts
-```
-plugins {
-    id ("com.iodigital.plugin")
-}
-```
-Add them as a task to your build script:
-
-build.gradle:
-
-```
-task("convertIcon").dependsOn("check")
-task("convertIcon").finalizedBy("check")
-```
-
-build.gradle.kts:
-```
-tasks.findByName("convertIcon")?.finalizedBy("check")
-tasks.findByName("convertIcon")?.dependsOn("check")
-```
-
-###Configuration:
-When running the plugin as part of your build, or when wrapping it in a task of your own, you can provide the configuration with the ```icon``` block.
-build.gradle
-```
-icon {
-    color "red"
-    text "debug"
-    convertIOS false
-    outputDir File(projectDir.path + "/app/src/main/res")
-    inputFile "/app/src/main/res/app-icon.png"
-}
-```
-build.gradle.kts
-```
-icon {
-    color.set("yellow")
-    text.set("TEST")
-    inputFile.set(projectDir.path + "/app/src/main/res/app-icon.png")
-    outputDir.set(File(projectDir.path + "/app/src/main/res/"))
-    convertIOS.set(false)
-}
-```
-All these properties are optional.
-Defaults:
-```
-icon {
-    color "red"
-    text "debug"
-    convertIOS false
-    outputDir File(projectDir.path + "/app/src/main/res")
-    inputFile "/app/src/main/res/app-icon.png"
-}
-```
-You can also invoke the plugin task from CLI or wrap it in your own task.
-Available task is ```convertIcon```
-```
-gradlew convertIcon --text="UAT" --color="green"
-```
-
-Wrapper task:
-build.gradle
-```
-tasks {
-    register("wrapperTask") {
-        icon {
-            color "red"
-            text "debug"
-            convertIOS false
-            outputDir File(projectDir.path + "/app/src/main/res")
-            inputFile "/app/src/main/res/app-icon.png"
-        }
-        doLast { tasks.findByPath("convertIcon") }
-    }
-}
-```
-build.gradle.kts
-```
-tasks.register("wrapperTask") {
-    icon {
-        color.set("red")
-        text.set("Wrapped")
-        inputFile.set("/app/src/main/res/app-icon.png")
-        outputDir.set(File(projectDir.path + "/app/src/main/res/"))
-        convertIOS.set(false)
-    }
-    doLast {
-        tasks.findByName("convertIcon")
-    }
-}
-```
-Execute:
-```gradlew wrapperTask```
+Once created don't forget to update the:
+- [gradle.properties](plugin-build/gradle.properties)
+- Plugin Usages (search for [com.ncorti.kotlin.gradle.template](https://github.com/cortinico/kotlin-gradle-plugin-template/search?q=com.ncorti.kotlin.gradle.template&unscoped_q=com.ncorti.kotlin.gradle.template) in the repo and replace it with your ID).
 
 ## Features 🎨
 
@@ -160,9 +65,11 @@ Please note that you need to configure two secrets: `GRADLE_PUBLISH_KEY` and `GR
 
 ## 100% Kotlin 🅺
 
-This plugin is designed to use Kotlin everywhere. The build files are written using [**Gradle Kotlin DSL**](https://docs.gradle.org/current/userguide/kotlin_dsl.html) as well as the [Plugin DSL](https://docs.gradle.org/current/userguide/plugins.html#sec:plugins_block) to setup the build.
+This template is designed to use Kotlin everywhere. The build files are written using [**Gradle Kotlin DSL**](https://docs.gradle.org/current/userguide/kotlin_dsl.html) as well as the [Plugin DSL](https://docs.gradle.org/current/userguide/plugins.html#sec:plugins_block) to setup the build.
 
 Dependencies are centralized inside the [libs.versions.toml](gradle/libs.versions.toml).
+
+Moreover, a minimalistic Gradle Plugin is already provided in Kotlin to let you easily start developing your own around it.
 
 ## Static Analysis 🔍
 
@@ -172,7 +79,7 @@ This template is also using [**detekt**](https://github.com/arturbosch/detekt) t
 
 ## CI ⚙️
 
-This plugin is using [**GitHub Actions**](https://github.com/cortinico/kotlin-android-template/actions) as CI.
+This template is using [**GitHub Actions**](https://github.com/cortinico/kotlin-android-template/actions) as CI. You don't need to setup any external service and you should have a running CI once you start using this template.
 
 There are currently the following workflows available:
 - [Validate Gradle Wrapper](.github/workflows/gradle-wrapper-validation.yml) - Will check that the gradle wrapper has a valid checksum

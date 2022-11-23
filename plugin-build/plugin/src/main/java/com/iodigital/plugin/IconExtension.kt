@@ -1,8 +1,7 @@
-package com.iodigital.kotlin.gradle.template.plugin
+package com.iodigital.plugin
 
 import org.gradle.api.Project
 import org.gradle.api.file.DirectoryProperty
-import org.gradle.api.file.RegularFileProperty
 import org.gradle.api.provider.Property
 import org.gradle.api.tasks.Optional
 import org.gradle.api.tasks.OutputDirectory
@@ -24,8 +23,6 @@ abstract class IconExtension @Inject constructor(private val project: Project) {
     @Optional
     val inputFile: Property<String> = objects.property(String::class.java).convention(DEFAULT_INPUT_FILE)
 
-    val file: RegularFileProperty = getFilePropertyFromString(inputFile.orNull)
-
     @Optional
     val color: Property<String> = objects.property(String::class.java).convention("red")
 
@@ -37,11 +34,4 @@ abstract class IconExtension @Inject constructor(private val project: Project) {
     val outputDir: DirectoryProperty = objects.directoryProperty().convention(
         project.layout.projectDirectory.dir(DEFAULT_OUTPUT_FILE)
     )
-
-    private fun getFilePropertyFromString(s: String?): RegularFileProperty {
-        val prop = objects.fileProperty()
-        prop.convention(project.layout.projectDirectory.file(DEFAULT_INPUT_FILE))
-        s?.let { prop.set(project.layout.projectDirectory.file(s)) }
-        return prop
-    }
 }

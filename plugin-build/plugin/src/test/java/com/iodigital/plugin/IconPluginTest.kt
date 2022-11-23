@@ -1,4 +1,4 @@
-package com.iodigital.kotlin.gradle.template.plugin
+package com.iodigital.plugin
 
 import org.gradle.testfixtures.ProjectBuilder
 import org.junit.Assert.assertEquals
@@ -11,7 +11,7 @@ class IconPluginTest {
     @Test
     fun `plugin is applied correctly to the project`() {
         val project = ProjectBuilder.builder().build()
-        project.pluginManager.apply("com.iodigital.kotlin.gradle.template.plugin")
+        project.pluginManager.apply("com.iodigital.plugin")
 
         assert(project.tasks.getByName("convertIcon") is ConvertIconTask)
     }
@@ -19,7 +19,7 @@ class IconPluginTest {
     @Test
     fun `extension icon is created correctly`() {
         val project = ProjectBuilder.builder().build()
-        project.pluginManager.apply("com.iodigital.kotlin.gradle.template.plugin")
+        project.pluginManager.apply("com.iodigital.plugin")
 
         assertNotNull(project.extensions.getByName("icon"))
     }
@@ -27,7 +27,7 @@ class IconPluginTest {
     @Test
     fun `parameters are passed correctly from extension to task`() {
         val project = ProjectBuilder.builder().build()
-        project.pluginManager.apply("com.iodigital.kotlin.gradle.template.plugin")
+        project.pluginManager.apply("com.iodigital.plugin")
         val dir = File(project.projectDir.path)
         val path = project.projectDir.path + "input.tmp"
         (project.extensions.getByName("icon") as IconExtension).apply {

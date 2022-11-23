@@ -31,6 +31,6 @@ gradleEnterprise {
     }
 }
 
-rootProject.name = ("com.iodigital.kotlin.gradle.template")
+rootProject.name = ("com.iodigital")
 
 include(":plugin")

@@ -30,11 +30,6 @@ gradlePlugin {
                     srcDirs(listOf("/src/main/resources"))
                 }
             }
-            test {
-                resources {
-                    srcDirs(listOf("/src/main/resources"))
-                }
-            }
         }
     }
 }

@@ -1,4 +1,4 @@
-package com.iodigital.kotlin.gradle.template.plugin
+package com.iodigital.plugin
 
 import org.gradle.api.file.DirectoryProperty
 import org.gradle.api.provider.Property
@@ -40,19 +40,14 @@ abstract class ConvertIconTask : Exec() {
 
     @TaskAction
     fun action() {
-        val prettyTag = text.orNull?.let { "[$it]" } ?: ""
+        val prettyTag = "icon-processor:convertIcon"
 
-        val file = project.layout.projectDirectory.file(inputFile)
         val t = text.orNull?.also { logger.lifecycle("$prettyTag text is: $it") }
-        val f = inputFile.orNull?.also { logger.lifecycle("$prettyTag inputFilePath is: $it") }
+        val absPath = project.projectDir.path + (inputFile.orNull ?: "")
+        val f = absPath.also { logger.lifecycle("$prettyTag inputFilePath is: $absPath") }
         val o = outputDir.orNull?.asFile?.path?.also { logger.lifecycle("$prettyTag output is: $it") }
         val c = color.orNull?.also { logger.lifecycle("$prettyTag color is: $it") }
         val ios = convertIOS.orNull?.also { logger.lifecycle("$prettyTag convertIOS is: $it") } ?: false
-        logger.lifecycle("$prettyTag color is: ${color.orNull}")
-        logger.lifecycle("$prettyTag inputFileStr is: ${inputFile.orNull }")
-        logger.lifecycle("$prettyTag inputFileStr is: ${file.orNull?.asFile?.path }")
-        logger.lifecycle("$prettyTag convertIOS is: ${convertIOS.orNull}")
-        logger.lifecycle("$prettyTag outputDir is: ${outputDir.orNull?.asFile?.path}")
 
         if (ios) {
             commandLine(TMP_PATH, "-t", t, "-f", f, "-o", o, "-c", c, "-a", "-i")
