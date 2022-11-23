@@ -50,20 +50,20 @@ When running the plugin as part of your build, or when wrapping it in a task of 
 build.gradle
 ```
 icon {
-    color "red"
+    color "red" // Hexcode or 'red' 'yellow' 'blue' 'green' 'black'
     text "debug"
     convertIOS false
-    outputDir File(projectDir.path + "/app/src/main/res")
-    inputFile "/app/src/main/res/app-icon.png"
+    outputDir File(projectDir.path + "/app/src/main/res") // Needs to be a File() for Gradle
+    inputFile "/app/src/main/res/app-icon.png" // path to input file
 }
 ```
 build.gradle.kts
 ```
 icon {
-    color.set("yellow")
+    color.set("yellow") // Hexcode or 'red' 'yellow' 'blue' 'green' 'black'
     text.set("TEST")
-    inputFile.set(projectDir.path + "/app/src/main/res/app-icon.png")
-    outputDir.set(File(projectDir.path + "/app/src/main/res/"))
+    inputFile.set("/app/src/main/res/app-icon.png") // path to icon
+    outputDir.set(File(projectDir.path + "/app/src/main/res/")) // Needs to be a File() for Gradle
     convertIOS.set(false)
 }
 ```
@@ -72,11 +72,11 @@ All these properties are optional.
 The defaults are:
 ```
 icon {
-    color "red"
+    color "red" // Hexcode or 'red' 'yellow' 'blue' 'green' 'black'
     text "debug"
     convertIOS false
-    outputDir File(projectDir.path + "/app/src/main/res")
-    inputFile "/app/src/main/res/app-icon.png"
+    outputDir File(projectDir.path + "/app/src/main/res") // Needs to be a File() for Gradle
+    inputFile "/app/src/main/res/app-icon.png" // path to input file
 }
 ```
 You can also invoke the plugin task from CLI or wrap it in your own task.
@@ -93,11 +93,11 @@ build.gradle
 tasks {
     register("wrapperTask") {
         icon {
-            color "red"
+            color "red" // Hexcode or 'red' 'yellow' 'blue' 'green' 'black'
             text "debug"
             convertIOS false
-            outputDir File(projectDir.path + "/app/src/main/res")
-            inputFile "/app/src/main/res/app-icon.png"
+            outputDir File(projectDir.path + "/app/src/main/res") // Needs to be a File() for Gradle
+            inputFile "/app/src/main/res/app-icon.png" // path to input file
         }
         doLast { tasks.findByPath("convertIcon") }
     }
