@@ -25,7 +25,10 @@ jobs:
         uses: gradle/gradle-build-action@v2
       - name: Run Gradle tasks
         run: ./gradlew preMerge --continue
-
+      - name: Setup ImageMagick
+        # You may pin to the exact commit or the version.
+        # uses: mfinelli/setup-imagemagick@b86364268eba18c627aeea80df418222b37fedc8
+        uses: mfinelli/setup-imagemagick@v2.0.0
         # We do a run of the new task `templateExample` created by the plugin
       - name: Run the plugin
         run: ./gradlew convertIcon --text="CI" --inputFile="./example/app/src/main/res/app-icon.png" --color="red"
