@@ -35,6 +35,10 @@ allprojects {
     }
 }
 
+tasks.withType<Copy>().configureEach {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+
 tasks.withType<Detekt>().configureEach {
     reports {
         html.required.set(true)
