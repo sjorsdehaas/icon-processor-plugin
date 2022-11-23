@@ -38,7 +38,14 @@ abstract class IconPlugin : Plugin<Project> {
 
         val tmp = File(TMP_PATH)
         val script = watermarkScript.asString()
-        tmp.writeText(script)
+        if (tmp.exists()) {
+            if (tmp.readText() != script) {
+                tmp.delete()
+                tmp.writeText(script)
+            }
+        } else {
+            tmp.writeText(script)
+        }
         tmp.setExecutable(true)
     }
 }
